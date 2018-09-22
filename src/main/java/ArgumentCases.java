@@ -16,8 +16,7 @@ public class ArgumentCases
     private String phone = " ";
     /* This parameter is used to determine whenever the search, list or add function is going to be used*/
     private int caseNum;
-    /* This parameter is used for test purposes; it will equal 0 when an error occurs and 1 when the transaction goes
-     * through fine */
+    /* This parameter is used in order to determine which status message should be returned */
     private int status;
 
     /**
@@ -45,7 +44,8 @@ public class ArgumentCases
             /* For list, it should just take one parameter that should print out every entry in the database */
             case "list":
                 /* Status is 1 in case of the list method being successful */
-                status = 1;
+                status = 0;
+                System.out.println(returnStatus(status));
                 /* catching the DLException */
                 try
                 {
@@ -63,13 +63,14 @@ public class ArgumentCases
                 if(args.length <= 4 && args.length != 1)
                 {
                     status = 1;
+                    System.out.println(returnStatus(status));
                     checkArgsAdd(args);
                 }
                 else
                 {
                     /* Status is 0 in case of the failed method */
-                    status = 0;
-                    System.out.println("Invalid number of arguments for the add method!");
+                    status = 2;
+                    System.out.println(returnStatus(status));
                 }
                 break;
             /* For add, it should take up to 2 parameters, with the first one being the "search" keyword, and one more
@@ -77,20 +78,20 @@ public class ArgumentCases
             case "search":
                 if(args.length == 2 && args.length != 1)
                 {
-                    status = 1;
+                    status = 3;
+                    System.out.println(returnStatus(status));
                     checkArgsSearch(args);
                 }
                 else
                 {
-                    status = 0;
-                    System.out.println("Invalid number of arguments for the search method!");
+                    status = 4;
+                    System.out.println(returnStatus(status));
                 }
                 break;
             /* This is the case in which there were no correct parameters used */
             default:
-                System.out.println("Please specify a command.\n" +
-                        "Available commands: list, add, search");
-                status = 0;
+                status = 5;
+                System.out.println(returnStatus(status));
                 break;
         }
     }
@@ -211,19 +212,60 @@ public class ArgumentCases
             }
             else
             {
-                status = 0;
-                System.out.println("Invalid column name!");
+                status = 6;
+                System.out.println(returnStatus(status));
             }
         }
     }
 
     /**
-     * This is the method which returns the status number for testing purposes
+     * This is the method which returns the status number
      *
      * @return the status number
      */
     public int getStatus()
     {
         return status;
+    }
+
+    /**
+     * This is the method which returns the status message based on the status number
+     *
+     * @param status status number
+     * @return the status message
+     */
+    public String returnStatus(int status)
+    {
+        String statusReturn = "";
+        /* Cases for each number */
+        switch(status)
+        {
+            case 0:
+                statusReturn = "List argument successfully initialized!";
+                break;
+            case 1:
+                statusReturn = "Add argument successfully initialized!";
+                break;
+            case 2:
+                statusReturn = "Invalid number of arguments for the add method!";
+                break;
+            case 3:
+                statusReturn = "Search argument successfully initialized!";
+                break;
+            case 4:
+                statusReturn = "Invalid number of arguments for the search method!";
+                break;
+            case 5:
+                statusReturn = "Please specify a command.\n" +
+                        "Available commands: list, add, search";
+                break;
+            case 6:
+                statusReturn = "Invalid column name!";
+                break;
+            default:
+                break;
+        }
+        /* String is returned */
+        return statusReturn;
     }
 }
