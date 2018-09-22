@@ -6,6 +6,9 @@ The main purpose of this project is to connect to a MySQL database and either li
 or search for a value.
 
 ## How to run
+1. Use the .sql script provided with the source code to create the scheme that will contain the "addr" table with all the necessary fields
+2. Configure the username and password fields to match the username and password of your MySQL connection (default values are "username" for username and "password" for password).
+
 
 ###### By .jar
 1. Download the .jar file located in the out/artifacts/addressbook_jar folder
