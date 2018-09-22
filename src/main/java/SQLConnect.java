@@ -87,7 +87,7 @@ public class SQLConnect
            /* These two cases will check if the results are empty or not */
            if(!res.next())
            {
-               System.out.println("No records found");
+               SQLConstants.returnOne(SQLConstants.NO_RECORDS);
            }
            else
            {
@@ -137,7 +137,7 @@ public class SQLConnect
                p.setString(2, mail);
                p.setString(3, phone);
                p.executeUpdate();
-               System.out.println("Record added.");
+               SQLConstants.returnOne(SQLConstants.RECORD_ADD);
            }
            /* If there are already existing values in the database they are instead updated */
            else
@@ -177,7 +177,7 @@ public class SQLConnect
 
                 upd.setInt(4, idInt);
                 upd.executeUpdate();
-                System.out.println("Record for " + name + " updated.");
+                SQLConstants.returnTwo(SQLConstants.UPDATE, name);
            }
        }
        catch(SQLException s)
@@ -211,11 +211,11 @@ public class SQLConnect
                    /* Here we check wherever there are any results or not*/
                    if(!res.next())
                    {
-                       System.out.println("No records found matching name = " + term);
+                       SQLConstants.returnTwo(SQLConstants.NO_NAME, term);
                    }
                    else
                    {
-                       System.out.println("Records found for name = " + term);
+                       SQLConstants.returnTwo(SQLConstants.YES_NAME, term);
                        queryResults(res);
                    }
                    break;
@@ -225,11 +225,11 @@ public class SQLConnect
                    res = p.executeQuery();
                    if(!res.next())
                    {
-                       System.out.println("No records found matching email = " + term);
+                       SQLConstants.returnTwo(SQLConstants.NO_MAIL, term);
                    }
                    else
                    {
-                       System.out.println("Records found for email = " + term);
+                       SQLConstants.returnTwo(SQLConstants.YES_MAIL, term);
                        queryResults(res);
                    }
                    break;
@@ -239,16 +239,16 @@ public class SQLConnect
                    res = p.executeQuery();
                    if(!res.next())
                    {
-                       System.out.println("No records found matching phone = " + term);
+                       SQLConstants.returnTwo(SQLConstants.NO_PHONE, term);
                    }
                    else
                    {
-                       System.out.println("Records found for phone = " + term);
+                       SQLConstants.returnTwo(SQLConstants.YES_PHONE, term);
                        queryResults(res);
                    }
                    break;
                default:
-                   System.out.println("No records found");
+                   SQLConstants.returnOne(SQLConstants.NO_RECORDS);
                    break;
            }
        }
