@@ -24,7 +24,7 @@ public class ArgumentCasesTest
         testError[0] = "a";
         testError[1] = "b";
         testError[2] = "c";
-        expectedStat = 0;
+        expectedStat = 5;
 
         mockMain(testError);
 
@@ -39,7 +39,7 @@ public class ArgumentCasesTest
     {
         testError = new String[1];
         testError[0] = "list";
-        expectedStat = 1;
+        expectedStat = 0;
 
         mockMain(testError);
 
@@ -56,7 +56,7 @@ public class ArgumentCasesTest
         testError = new String[2];
         testError[0] = "search";
         testError[1] = "nam=Someone";
-        expectedStat = 0;
+        expectedStat = 6;
 
         mockMain(testError);
 
@@ -73,7 +73,7 @@ public class ArgumentCasesTest
         testError[0] = "search";
         testError[1] = "name=Someone";
         testError[2] = "email=a@a.com";
-        expectedStat = 0;
+        expectedStat = 4;
 
         mockMain(testError);
 
@@ -89,7 +89,7 @@ public class ArgumentCasesTest
         testError = new String[2];
         testError[0] = "search";
         testError[1] = "name=Someone";
-        expectedStat = 1;
+        expectedStat = 3;
 
         mockMain(testError);
 
