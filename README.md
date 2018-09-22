@@ -42,7 +42,7 @@ or search for a value.
 3. The project needs to be built by using the following command: mvn package
 4. Run the project with mvn exec:java -Dexec.args="list"
    Expected output should be similar to this example:
-	![output example](https://i.imgur.com/zdhLpRE.png)
+	![output example](https://imgur.com/oe39WZ3.png)
 5. To run tests use:
 	- mvn test to perform all of the tests
 	- mvn test -Dtest=ArgumentCasesTest to perform tests regarding ArgumentCases class
