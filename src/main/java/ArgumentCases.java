@@ -173,7 +173,6 @@ public class ArgumentCases
                 caseNum = 1;
                 try
                 {
-                    status = 1;
                     /* The search value and the case number are further used in the SQLConnect class */
                     sc.search(name, caseNum);
                 }
